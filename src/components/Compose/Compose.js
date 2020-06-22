@@ -17,11 +17,14 @@ export default class Compose extends Component {
   }
 
   updateText( text ) {
+    // console.log(text)
+    
     this.setState({ text });
   }
 
   createPost() {
-
+    this.props.createPostFn(this.state.text);
+    this.setState({text: ''});
   }
 
   render() {

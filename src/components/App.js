@@ -51,7 +51,12 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
-  createPost() {
+  createPost(text) {
+    axios.post(`https://practiceapi.devmountain.com/api/posts`, {text})
+    .then(res => {
+      this.setState({posts: res.data});
+    })
+    .catch(err => console.log(err))
 
   }
 
@@ -65,7 +70,7 @@ class App extends Component {
 
         <section className="App__content">
 
-          <Compose />
+          <Compose createPostFn={this.createPost}/>
           {
             posts.map( post => (
               <Post 
