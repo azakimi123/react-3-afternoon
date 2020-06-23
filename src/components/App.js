@@ -12,18 +12,20 @@ class App extends Component {
     super();
 
     this.state = {
-      posts: []
+      posts: [],
     };
 
     this.updatePost = this.updatePost.bind( this );
     this.deletePost = this.deletePost.bind( this );
     this.createPost = this.createPost.bind( this );
+    // this.searchPost = this.searchPost.bind(this);
   }
   
   componentDidMount() {
     axios.get('https://practiceapi.devmountain.com/api/posts')
 
     .then(res => {
+      // console.log(res.data[0].text)
       this.setState({posts: res.data});
     })
     .catch(err => console.log(err))
@@ -60,13 +62,20 @@ class App extends Component {
 
   }
 
+
+
+
   render() {
     const { posts } = this.state;
-    // console.log(posts)
+    // console.log(this.state.posts[0])
 
     return (
       <div className="App__parent">
-        <Header />
+        
+        <Header 
+          // searchPostFn={this.searchPost}
+          // updateTextFn={this.updateText}
+        />
 
         <section className="App__content">
 
